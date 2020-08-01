@@ -1,5 +1,5 @@
-//const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
-const host = "http://localhost:3000";
+const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
+//const host = "http://localhost:3000";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
