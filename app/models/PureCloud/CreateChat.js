@@ -31,7 +31,10 @@ module.exports = {
 				email : email,
 				phoneNumber : phone,
 				customFields : {
-					language: LANGUAGE
+					language: LANGUAGE,
+					VariavelA: 'A',
+					VariavelB: 'B',
+					VariavelC: 'C'
 				}
 			}
 		}
