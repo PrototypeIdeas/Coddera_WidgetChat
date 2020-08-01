@@ -1,5 +1,5 @@
-const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
-//const host = "http://localhost:3000";
+//const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
+const host = "http://localhost:3000";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
@@ -123,8 +123,11 @@ function widget() {
                     chatObj.data = JSON.parse(this.response).data;
                     
                     var socket = new WebSocket(chatObj.data.eventStreamUri, "protocolOne");
-                    
-                    $('#dialog-header').append('<p>Conversa iniciada às 00:00. Aguarde, um atendente logo estará disponível</p>');
+                    var data = new Date();
+                    var hora    = data.getHours();
+                    var min     = data.getMinutes();
+
+                    $('#dialog-header').append('<p>Conversa iniciada às ' + hora + ':' + min + '. Aguarde, um atendente logo estará disponível</p>');
 
                     socket.onopen = function(event){
                         sendMsg(question.value, chatObj.data.id, chatObj.data.member.id, chatObj.data.jwt);
