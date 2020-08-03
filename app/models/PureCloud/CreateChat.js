@@ -36,7 +36,10 @@ module.exports = {
 					lastName : "",
 					firstName : name,
 					email : email,
-					phoneNumber : phone
+					phoneNumber : phone,
+					VariavelA: 'A',
+					VariavelB: 'B',
+					VariavelC: 'C'
 				}
 			}
 		}
