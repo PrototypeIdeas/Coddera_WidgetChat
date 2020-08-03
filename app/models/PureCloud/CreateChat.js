@@ -15,6 +15,7 @@ module.exports = {
 		var email = req.body.email;
 		
 		console.log('>>>>>>>>>>>>> INIT PURECLOUD Widget');
+		console.log('>>>>>>>>>>>>> Name: ' + name + '|Phone: ' + phone + '|Email: ' + email);
 		
 		const createChatData = {
 			organizationId: PURECLOUD_ORG_ID,
@@ -25,16 +26,17 @@ module.exports = {
 			},
 			memberInfo : { 
 				displayName : name,
-				avatarImageUrl: "http://some-url.com/JoeDirtsFace",
 				lastName : "",
 				firstName : name,
 				email : email,
 				phoneNumber : phone,
 				customFields : {
-					language: LANGUAGE,
-					VariavelA: 'A',
-					VariavelB: 'B',
-					VariavelC: 'C'
+					language: LANGUAGE,				
+					displayName : name,
+					lastName : "",
+					firstName : name,
+					email : email,
+					phoneNumber : phone
 				}
 			}
 		}
