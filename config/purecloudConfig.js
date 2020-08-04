@@ -15,5 +15,8 @@ purecloudConfig.widget.LANGUAGE = 'pt-BR';
 purecloudConfig.widget.SEND_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/messages'
 
 
+//SEND TYPING CONFIG
+purecloudConfig.widget.SEND_TYPING_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/typing'
+
 
 module.exports = purecloudConfig;

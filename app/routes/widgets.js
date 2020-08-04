@@ -50,4 +50,24 @@ module.exports = function (application) {
         }
 
     });
+
+    application.post('/coddera-widget/chat/send-typing', function (req, res) {
+        var params = req.body;
+        console.log("Parametros: " + JSON.stringify(params));
+
+        req.assert('conversationId', 'Parametro {conversationId} é obrigatório').notEmpty();
+        req.assert('memberId', 'Parametro {memberId} é obrigatório').notEmpty();
+        req.assert('token', 'Parametro {token} é obrigatório').notEmpty();
+        
+        var error = req.validationErrors();
+
+        if(error){
+            res.status(400).json(error);
+        } else {
+            purecloudSendMsgModel.sendMsg(req, res, function(resp){
+                res.json(resp);
+            });
+        }
+
+    });
 };
