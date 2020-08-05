@@ -4,7 +4,7 @@ var request = require('request');
 const SEND_TYPING_URL = purecloudConfig.widget.SEND_TYPING_URL;
 
 module.exports = {
-	sendMsg : function(req, res, callback) {
+	sendTyping : function(req, res, callback) {
         // Authenticate with PureCloud
         var conversationId = req.body.conversationId;
 		var memberId = req.body.memberId;

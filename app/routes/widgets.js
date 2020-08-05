@@ -1,5 +1,6 @@
 var purecloudCreateModel = require('../models/PureCloud/CreateChat')
 var purecloudSendMsgModel = require('../models/PureCloud/SendMsgChat')
+var purecloudSendTypingModel = require('../models/PureCloud/SendTypingChat')
 
 module.exports = function (application) {
     application.get('/coddera-widget', function (req, res) {
@@ -64,7 +65,7 @@ module.exports = function (application) {
         if(error){
             res.status(400).json(error);
         } else {
-            purecloudSendMsgModel.sendMsg(req, res, function(resp){
+            purecloudSendTypingModel.sendTyping(req, res, function(resp){
                 res.json(resp);
             });
         }

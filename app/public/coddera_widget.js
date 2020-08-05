@@ -1,5 +1,5 @@
-//const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
-const host = "http://localhost:3000";
+const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
+//const host = "http://localhost:3000";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
@@ -50,43 +50,18 @@ function widget() {
         }
     
         firstName.oninput = function (){
-            $('#form-group').css('border-bottom', '2px solid #FCAF17');
-            if(firstName.value != "" && phoneNumber.value != "" && email.value != "" && question.value != ""){
-                $('#submit-widget').prop("disabled", false);
-            }
-    
-            if(firstName.value == "" || phoneNumber.value == "" || email.value == "" || question.value == ""){
-                $('#submit-widget').prop("disabled", true);
-            }
+            btnSubmitValidation(firstName, phoneNumber, email, question);
         }
         phoneNumber.oninput = function (){
-            if(firstName.value != "" && phoneNumber.value != "" && email.value != "" && question.value != ""){
-                $('#submit-widget').prop("disabled", false);
-            }
-    
-            if(firstName.value == "" || phoneNumber.value == "" || email.value == "" || question.value == ""){
-                $('#submit-widget').prop("disabled", true);
-            }
+            btnSubmitValidation(firstName, phoneNumber, email, question);
         }
 
         email.oninput = function (){
-            if(firstName.value != "" && phoneNumber.value != "" && email.value != "" && question.value != ""){
-                $('#submit-widget').prop("disabled", false);
-            }
-    
-            if(firstName.value == "" || phoneNumber.value == "" || email.value == "" || question.value == ""){
-                $('#submit-widget').prop("disabled", true);
-            }
+            btnSubmitValidation(firstName, phoneNumber, email, question);
         }
 
         question.oninput = function (){
-            if(firstName.value != "" && phoneNumber.value != "" && email.value != "" && question.value != ""){
-                $('#submit-widget').prop("disabled", false);
-            }
-    
-            if(firstName.value == "" || phoneNumber.value == "" || email.value == "" || question.value == ""){
-                $('#submit-widget').prop("disabled", true);
-            }
+            btnSubmitValidation(firstName, phoneNumber, email, question);
         }
     
         submitButton.onclick = function () {
@@ -133,11 +108,37 @@ function widget() {
                                     chatObj.member.id = eventData.eventBody.member.id;
                                 }else if(eventData.eventBody.member.state == 'CONNECTED' && chatObj.member.id == eventData.eventBody.member.id){                                
                                     $('.custom-card-footer').show();
+                                    
+                                    document.getElementById('send-msg-txt').oninput = function (){
+                                        console.log('Escrevendo...');
+                                        var xhttp = new XMLHttpRequest();
+                            
+                                        var data = {
+                                            conversationId: chatObj.data.id,
+                                            memberId: chatObj.data.member.id,
+                                            token: chatObj.data.jwt,
+                                        };
+                                
+                                        xhttp.onloadend = function() {
+                                            console.log('Response Code: ' + this.status)
+                                            console.log('Response: ' + this.response)
+                                        };
+                            
+                                        xhttp.open("POST", host + "/coddera-widget/chat/send-typing", true);
+                                        xhttp.setRequestHeader("Content-type", "application/json");
+                                        xhttp.send(JSON.stringify(data));
+                                    }
+
                                     $('.chat-dialog').append('<p>O operador acabou de se connectar.</p>')
                                 } else if (eventData.eventBody.member.state == 'DISCONNECTED' && chatObj.member.id == eventData.eventBody.member.id){
                                     socket.close();
                                     $('.custom-card-footer').hide();
-                                    $('.chat-dialog').append('<p>O chat foi encerrado. Obrigado pelo contato</p>');
+                                    $('.chat-dialog').append('<p>O chat foi encerrado. Obrigado pelo contato.</p>');
+                                    var typing = document.getElementById('block-typing');
+                                    if(typing != null){
+                                        typing.parentNode.removeChild(typing);
+                                        chatObj.typingControl = true;
+                                    }
                                 }
 
                                 break;
@@ -145,25 +146,27 @@ function widget() {
                                 
                                 var html = "";
                                 if(eventData.metadata.type == 'typing-indicator' && chatObj.typingControl){
-                                    console.log('Entrou no typing');
-                                    html += '<div class="block-dialog"  id="block-typing">';
-                                    html += ' <div class="typing-msg">'
-                                    html += '  <div class="typing">';
-                                    html += '   <div class="dot"></div>';
-                                    html += '   <div class="dot"></div>';
-                                    html += '   <div class="dot"></div>';
-                                    html += '  </div>';
-                                    html += ' </div>';
-                                    html += '<div class="agent-name">Digitando</div>';
-                                    html += '</div>';
-                
-    
-                                    console.log(html);
-    
-                                    $('.chat-dialog').append(html);
-                                    document.getElementById('chat-body').scrollTo(0, document.getElementById('chat-body').scrollHeight);
-                                    chatObj.typingControl = false;
-                                    chatObj.heartbeatCount = 0;
+                                    if(chatObj.member.id == eventData.eventBody.sender.id){
+                                        console.log('Entrou no typing');
+                                        html += '<div class="block-dialog"  id="block-typing">';
+                                        html += ' <div class="typing-msg">'
+                                        html += '  <div class="typing">';
+                                        html += '   <div class="dot"></div>';
+                                        html += '   <div class="dot"></div>';
+                                        html += '   <div class="dot"></div>';
+                                        html += '  </div>';
+                                        html += ' </div>';
+                                        html += '<div class="agent-name">Digitando</div>';
+                                        html += '</div>';
+                    
+        
+                                        console.log(html);
+        
+                                        $('.chat-dialog').append(html);
+                                        document.getElementById('chat-body').scrollTo(0, document.getElementById('chat-body').scrollHeight);
+                                        chatObj.typingControl = false;
+                                        chatObj.heartbeatCount = 0;
+                                    }
                                 }
     
                                 if(eventData.metadata.type == 'message'){
@@ -198,7 +201,7 @@ function widget() {
                                 if(eventData.eventBody.message == "WebSocket Heartbeat"){
                                     chatObj.heartbeatCount += 1;
     
-                                    if(chatObj.heartbeatCount == 3) {
+                                    if(chatObj.heartbeatCount == 2) {
                                         var dialog = document.getElementById('chat-dialog');
                                         
                                         if(dialog.querySelector('#block-typing')){
@@ -227,6 +230,15 @@ function widget() {
         };
     });
 };
+
+function btnSubmitValidation(firstName, phoneNumber, email, question) {
+    $('#form-group').css('border-bottom', '2px solid #FCAF17');
+    if(firstName.value != "" && phoneNumber.value != "" && email.value != "" && question.value != ""){
+        $('#submit-widget').prop("disabled", false);
+    } else {
+        $('#submit-widget').prop("disabled", true);
+    }
+}
 
 function sendMsg(msg, id, memberId, token) {
 
