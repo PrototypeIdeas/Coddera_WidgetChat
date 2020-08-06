@@ -95,7 +95,7 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
   
   Respostas:
     
-    Sucess:
+    Success:
       status: 200 OK
       body: {
             id: '0e4a4c93-dd6f-4440-929a-3f22fb1c7d3f',
@@ -164,7 +164,7 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
   
   Respostas:
     
-    Sucess:
+    Success:
       status: 200 OK
       body: {
         "id": "d184e1de-b9c8-4dd3-b970-a2a5adbaac3a",
@@ -247,7 +247,7 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
   
   Respostas:
     
-    Sucess:
+    Success:
       status: 200 OK
       body: {
         "id": "411570eb-09b9-41e4-a271-3bbe1a4fcca5",
