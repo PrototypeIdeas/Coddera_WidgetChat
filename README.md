@@ -85,12 +85,14 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
 
   URL: http://localhost:3000/coddera-widget/chat/create
   
-  Body: {
+  Body: 
+  	{
 	        "name":"Teste",
 	        "phone":"11999972564",
-          "email":"teste@teste.com",
-          "question":"Teste?"
+          	"email":"teste@teste.com",
+          	"question":"Teste?"
         }
+  
   (todos parametros são obrigatórios)
   
   Respostas:
@@ -109,7 +111,7 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
      Error:
       status: 400 BadRequest (Parametro phone vazio)
       body: [
-              {
+            AtOTI5YS0zZjIyZmIxYzdkM2YiLCJkaWQiOiI3NTM5YzcxNC0yZTY1LTQwMmQtYWZmMi0zN2Y4MzYyZGQ2N2UiLCJzdWIiOiIyZjk5OTUzNy1jNGFkLTQ3NWQtYmQ5NS0zZDM4YTgxNGNkNDYifSwiZXhwIjoxNTk2NzExNzQ5LCJpYXQiOjE1OTY2MzI5ODgsImlzcyI6InVybjpwdXJlY2xvdWQ6d2ViY2hhdCIsIm9yZyI6Ijk0NzY1OWMwLWQyNWQtNGY3Mi1iMDdmLWJmNTE4MTk1MmY1YiJ9.ul9ehGztfIRJM9LwCSnBhxZgmFBhEd6hQ2kRXufbDOe4-J_XueJwU7nkWG0SJlCoMuXzOTw05GcZ7AtO502CYhZ3TtTUxSlFRfwYC_hPLPjeqlz_OZKh6-obChW9CQAM2Kpsk4XzuvxYQ1OEkjuWQWsAKuvGCGaADIrY9RutfgU1-BgETS9ro60GA7cs647egCky4uPhC3JXDxtShns07wsPQ3Y6iugugCZjh2sJU1kZEalvTFskR0fOK7H3MY4wURjmiVWH-vDrUx-FF0l9Mys5aWG64B1Zk4fH2pCeHYASTJ-xTAL5HJ8PWuO7L6odXWXm4Q6ag0hg4QwbxZfvzQ", }  {
                   "location": "body",
                   "param": "phone",
                   "msg": "Parametro {phone} é obrigatório",
@@ -153,13 +155,15 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
 
   URL: http://localhost:3000/coddera-widget/chat/send
   
-  Body: {
-	        "conversationId":"0e4a4c93-dd6f-4440-929a-3f22fb1c7d3f",
-	        "memberId":"2f999537-c4ad-475d-bd95-3d38a814cd46",
-          "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMjNiMzkzLWZmZDMtNDFjNi05ODk5LTY4ZjlmMmIwZTZhNSIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNvbnYiOiIwZTRhNGM5My1kZDZmLTQ0NDAtOTI5YS0zZjIyZmIxYzdkM2YiLCJkaWQiOiI3NTM5YzcxNC0yZTY1LTQwMmQtYWZmMi0zN2Y4MzYyZGQ2N2UiLCJzdWIiOiIyZjk5OTUzNy1jNGFkLTQ3NWQtYmQ5NS0zZDM4YTgxNGNkNDYifSwiZXhwIjoxNTk2NzExNzQ5LCJpYXQiOjE1OTY2MzI5ODgsImlzcyI6InVybjpwdXJlY2xvdWQ6d2ViY2hhdCIsIm9yZyI6Ijk0NzY1OWMwLWQyNWQtNGY3Mi1iMDdmLWJmNTE4MTk1MmY1YiJ9.ul9ehGztfIRJM9LwCSnBhxZgmFBhEd6hQ2kRXufbDOe4-J_XueJwU7nkWG0SJlCoMuXzOTw05GcZ7AtO502CYhZ3TtTUxSlFRfwYC_hPLPjeqlz_OZKh6-obChW9CQAM2Kpsk4XzuvxYQ1OEkjuWQWsAKuvGCGaADIrY9RutfgU1-BgETS9ro60GA7cs647egCky4uPhC3JXDxtShns07wsPQ3Y6iugugCZjh2sJU1kZEalvTFskR0fOK7H3MY4wURjmiVWH-vDrUx-FF0l9Mys5aWG64B1Zk4fH2pCeHYASTJ-xTAL5HJ8PWuO7L6odXWXm4Q6ag0hg4QwbxZfvzQ",
-          "msg":"Teste msg"
-          "bodyType":"standard"
+  Body: 
+  	{
+		"conversationId":"0e4a4c93-dd6f-4440-929a-3f22fb1c7d3f",
+		"memberId":"2f999537-c4ad-475d-bd95-3d38a814cd46",
+		"token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMjNiMzkzLWZmZDMtNDFjNi05ODk5LTY4ZjlmMmIwZTZhNSIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNvbnYiOiIwZTRhNGM5My1kZDZmLTQ0NDAtOTI5YS0zZjIyZmIxYzdkM2YiLCJkaWQiOiI3NTM5YzcxNC0yZTY1LTQwMmQtYWZmMi0zN2Y4MzYyZGQ2N2UiLCJzdWIiOiIyZjk5OTUzNy1jNGFkLTQ3NWQtYmQ5NS0zZDM4YTgxNGNkNDYifSwiZXhwIjoxNTk2NzExNzQ5LCJpYXQiOjE1OTY2MzI5ODgsImlzcyI6InVybjpwdXJlY2xvdWQ6d2ViY2hhdCIsIm9yZyI6Ijk0NzY1OWMwLWQyNWQtNGY3Mi1iMDdmLWJmNTE4MTk1MmY1YiJ9.ul9ehGztfIRJM9LwCSnBhxZgmFBhEd6hQ2kRXufbDOe4-J_XueJwU7nkWG0SJlCoMuXzOTw05GcZ7AtO502CYhZ3TtTUxSlFRfwYC_hPLPjeqlz_OZKh6-obChW9CQAM2Kpsk4XzuvxYQ1OEkjuWQWsAKuvGCGaADIrY9RutfgU1-BgETS9ro60GA7cs647egCky4uPhC3JXDxtShns07wsPQ3Y6iugugCZjh2sJU1kZEalvTFskR0fOK7H3MY4wURjmiVWH-vDrUx-FF0l9Mys5aWG64B1Zk4fH2pCeHYASTJ-xTAL5HJ8PWuO7L6odXWXm4Q6ag0hg4QwbxZfvzQ",
+		"msg":"Teste msg"
+		"bodyType":"standard"
         }
+  
   (todos parametros são obrigatórios)
   
   Respostas:
@@ -237,10 +241,11 @@ O widget será construido na div - purecloud-widget (atenção para o a variavel
 
   URL: http://localhost:3000/coddera-widget/chat/send-typing
   
-  Body: {
-	        "conversationId":"0e4a4c93-dd6f-4440-929a-3f22fb1c7d3f",
-	        "memberId":"2f999537-c4ad-475d-bd95-3d38a814cd46",
-          "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMjNiMzkzLWZmZDMtNDFjNi05ODk5LTY4ZjlmMmIwZTZhNSIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNvbnYiOiIwZTRhNGM5My1kZDZmLTQ0NDAtOTI5YS0zZjIyZmIxYzdkM2YiLCJkaWQiOiI3NTM5YzcxNC0yZTY1LTQwMmQtYWZmMi0zN2Y4MzYyZGQ2N2UiLCJzdWIiOiIyZjk5OTUzNy1jNGFkLTQ3NWQtYmQ5NS0zZDM4YTgxNGNkNDYifSwiZXhwIjoxNTk2NzExNzQ5LCJpYXQiOjE1OTY2MzI5ODgsImlzcyI6InVybjpwdXJlY2xvdWQ6d2ViY2hhdCIsIm9yZyI6Ijk0NzY1OWMwLWQyNWQtNGY3Mi1iMDdmLWJmNTE4MTk1MmY1YiJ9.ul9ehGztfIRJM9LwCSnBhxZgmFBhEd6hQ2kRXufbDOe4-J_XueJwU7nkWG0SJlCoMuXzOTw05GcZ7AtO502CYhZ3TtTUxSlFRfwYC_hPLPjeqlz_OZKh6-obChW9CQAM2Kpsk4XzuvxYQ1OEkjuWQWsAKuvGCGaADIrY9RutfgU1-BgETS9ro60GA7cs647egCky4uPhC3JXDxtShns07wsPQ3Y6iugugCZjh2sJU1kZEalvTFskR0fOK7H3MY4wURjmiVWH-vDrUx-FF0l9Mys5aWG64B1Zk4fH2pCeHYASTJ-xTAL5HJ8PWuO7L6odXWXm4Q6ag0hg4QwbxZfvzQ",
+  Body: 
+  	{
+		"conversationId":"0e4a4c93-dd6f-4440-929a-3f22fb1c7d3f",
+		"memberId":"2f999537-c4ad-475d-bd95-3d38a814cd46",
+		"token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMjNiMzkzLWZmZDMtNDFjNi05ODk5LTY4ZjlmMmIwZTZhNSIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImNvbnYiOiIwZTRhNGM5My1kZDZmLTQ0NDAtOTI5YS0zZjIyZmIxYzdkM2YiLCJkaWQiOiI3NTM5YzcxNC0yZTY1LTQwMmQtYWZmMi0zN2Y4MzYyZGQ2N2UiLCJzdWIiOiIyZjk5OTUzNy1jNGFkLTQ3NWQtYmQ5NS0zZDM4YTgxNGNkNDYifSwiZXhwIjoxNTk2NzExNzQ5LCJpYXQiOjE1OTY2MzI5ODgsImlzcyI6InVybjpwdXJlY2xvdWQ6d2ViY2hhdCIsIm9yZyI6Ijk0NzY1OWMwLWQyNWQtNGY3Mi1iMDdmLWJmNTE4MTk1MmY1YiJ9.ul9ehGztfIRJM9LwCSnBhxZgmFBhEd6hQ2kRXufbDOe4-J_XueJwU7nkWG0SJlCoMuXzOTw05GcZ7AtO502CYhZ3TtTUxSlFRfwYC_hPLPjeqlz_OZKh6-obChW9CQAM2Kpsk4XzuvxYQ1OEkjuWQWsAKuvGCGaADIrY9RutfgU1-BgETS9ro60GA7cs647egCky4uPhC3JXDxtShns07wsPQ3Y6iugugCZjh2sJU1kZEalvTFskR0fOK7H3MY4wURjmiVWH-vDrUx-FF0l9Mys5aWG64B1Zk4fH2pCeHYASTJ-xTAL5HJ8PWuO7L6odXWXm4Q6ag0hg4QwbxZfvzQ",
         }
         
   (todos parametros são obrigatórios)
