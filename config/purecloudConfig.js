@@ -18,5 +18,8 @@ purecloudConfig.widget.SEND_URL = 'https://api.mypurecloud.com/api/v2/webchat/gu
 //SEND TYPING CONFIG
 purecloudConfig.widget.SEND_TYPING_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}/typing'
 
+//FINALYZE CONFIG
+purecloudConfig.widget.FINALYZE_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}'
+
 
 module.exports = purecloudConfig;

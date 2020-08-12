@@ -1,5 +1,5 @@
-const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
-//const host = "http://localhost:3000";
+// const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
+const host = "http://localhost:3000";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
@@ -14,7 +14,7 @@ function widget() {
         var firstName = document.getElementById('first-name');
         var phoneNumber = document.getElementById('phone-number');
         var email = document.getElementById('email');
-        var question = document.getElementById('question');;
+        var question = document.getElementById('question');
         var removeBtn = document.getElementById('remove-coddera-widget-card-btn');
 
         var chatObj = {
@@ -40,8 +40,26 @@ function widget() {
         }
 
         removeBtn.onclick = function () {
-            $('#coddera-widget-card').slideToggle("fast");
-            $('#open-form-widget-button').show();
+            
+            if(chatObj.data.member != undefined){                  
+                var xhttp = new XMLHttpRequest();
+                
+                var data = {
+                    conversationId: chatObj.data.id,
+                    memberId: chatObj.data.member.id,
+                    token: chatObj.data.jwt,
+                };
+        
+                xhttp.onloadend = function() {
+                    widget();
+                };
+    
+                xhttp.open("DELETE", host + "/coddera-widget/chat/finalyze", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(JSON.stringify(data));
+            } else {
+                widget();
+            }            
         }
     
         openFormButton.onclick = function (){
@@ -77,7 +95,6 @@ function widget() {
             var xhttp = new XMLHttpRequest();
 
             xhttp.onloadend = function() {
-                console.log("Status: " + this.status);
                 while(this.status == 0){
                     console.log('wait');
                 }
@@ -147,7 +164,6 @@ function widget() {
                                 var html = "";
                                 if(eventData.metadata.type == 'typing-indicator' && chatObj.typingControl){
                                     if(chatObj.member.id == eventData.eventBody.sender.id){
-                                        console.log('Entrou no typing');
                                         html += '<div class="block-dialog"  id="block-typing">';
                                         html += ' <div class="typing-msg">'
                                         html += '  <div class="typing">';
@@ -158,10 +174,7 @@ function widget() {
                                         html += ' </div>';
                                         html += '<div class="agent-name">Digitando</div>';
                                         html += '</div>';
-                    
-        
-                                        console.log(html);
-        
+                            
                                         $('.chat-dialog').append(html);
                                         document.getElementById('chat-body').scrollTo(0, document.getElementById('chat-body').scrollHeight);
                                         chatObj.typingControl = false;
@@ -170,7 +183,6 @@ function widget() {
                                 }
     
                                 if(eventData.metadata.type == 'message'){
-                                    console.log('Entrou no message');
                                     if(chatObj.member.id == eventData.eventBody.sender.id){
                                         if(eventData.eventBody.body != ''){
                                             if(chatObj.member.id == eventData.eventBody.sender.id){
@@ -215,11 +227,10 @@ function widget() {
                                 }
                                 break;
                             default:
-                              console.log(`EVENTO IGNORADO`);
                         }
                     }
                  }else{
-                    console.log("ERROR");
+                    console.log(">>>>>>>> CREATE CHAT ERROR: " + this.response);
                  }
             };
 
@@ -253,10 +264,6 @@ function sendMsg(msg, id, memberId, token) {
     var xhttp = new XMLHttpRequest();
     
     xhttp.onloadend = function() {
-
-        console.log('Response Code: ' + this.status)
-        console.log('Response: ' + this.response)
-
         if (this.status == 200) {
             var html = "";
             if(msg != ''){
@@ -273,7 +280,7 @@ function sendMsg(msg, id, memberId, token) {
             document.getElementById('chat-body').scrollTo(0, document.getElementById('chat-body').scrollHeight);
             $('.send-msg-txt').val("");
         }else{
-            console.log('ERROR: ' + this.response)
+            console.log('>>>>>>>> SEND MESSAGE ERROR: ' + this.response)
         }
 
     };
