@@ -1,5 +1,6 @@
 var purecloudConfig = {};
 purecloudConfig.widget = {};
+purecloudConfig.aws = {};
 
 //CREATE CHAT CONFIG
 purecloudConfig.widget.CREATE_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations'
@@ -21,5 +22,10 @@ purecloudConfig.widget.SEND_TYPING_URL = 'https://api.mypurecloud.com/api/v2/web
 //FINALYZE CONFIG
 purecloudConfig.widget.FINALYZE_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations/{conversationId}/members/{memberId}'
 
+//AWS CONFIG
+purecloudConfig.aws.ACCESS_KEY_ID = 'AKIAQW73BXXT7WEYX5FZ'
+purecloudConfig.aws.SECRET_ACCESS_KEY = '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'
+purecloudConfig.aws.AWS_REGION = 'sa-east-1'
+purecloudConfig.aws.S3_BUCKET = 'anexossebrae'
 
 module.exports = purecloudConfig;

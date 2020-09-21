@@ -1,11 +1,12 @@
 // const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
-const host = "http://localhost:3000";
+const host = "http://localhost:3001";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
         $("#initial_card_widget_logo").attr("src", host + "/images/sebrae_1.png");
         $("#card_widget_logo").attr("src", host + "/images/sebrae_1.png");
         $(".send-msg-btn").css('background-image', 'url("' + host + '/images/send_btn.png' + '")');
+        $(".attach-btn").css('background-image', 'url("' + host + '/images/paperclip.png' + '")');
         $("#form-body").css('background-image', 'url("' + host + '/images/sebrae_back.png' + '")');
 
         var submitButton = document.getElementById('submit-widget');
@@ -16,6 +17,7 @@ function widget() {
         var email = document.getElementById('email');
         var question = document.getElementById('question');
         var removeBtn = document.getElementById('remove-coddera-widget-card-btn');
+        var fileUpload = document.getElementById('widget-file-upload');
 
         var chatObj = {
             member: {id: ''},
@@ -26,6 +28,44 @@ function widget() {
     
         $('#coddera-widget-card').slideToggle("fast");
     
+        fileUpload.onchange = function (){
+            var fReader = new FileReader();
+            const name = fileUpload.files[0].name;
+            const type = fileUpload.files[0].type;
+ 
+            fReader.readAsDataURL(fileUpload.files[0]);
+            fReader.onloadend = function(event){
+                var img = fileUpload;
+                img.src = event.target.result;
+
+                console.log('FILE: ' +  event.target.result);
+
+                var xhttp = new XMLHttpRequest();
+                
+                var data = {
+                    base64: event.target.result,
+                    name: name,
+                    type: type,
+                };
+        
+                xhttp.onloadend = function() {
+                    const msg = "";
+                    if (this.status == 200) {
+                        var data = JSON.parse(this.response);
+                        msg = "Segue o link do anexo: " + data.url
+                        sendMsg(msg, chatObj.data.id, chatObj.data.member.id, chatObj.data.jwt);
+                    } else {
+                        msg = "Desculpe houve um erro no envio do anexo." 
+                        sendMsg(msg, chatObj.data.id, chatObj.data.member.id, chatObj.data.jwt);
+                    }
+                };
+    
+                xhttp.open("POST", host + "/coddera-widget/aws/uploadS3", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(JSON.stringify(data));
+
+            }
+        }
 
         document.getElementById('send-msg-btn').onclick = function (){
             var msg = $('.send-msg-txt').val();

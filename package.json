@@ -18,6 +18,8 @@
   "author": "Coddera",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.1.2",
+    "aws-sdk": "^2.755.0",
     "axios": "^0.19.2",
     "body-parser": "^1.15.2",
     "consign": "^0.1.2",
@@ -25,6 +27,7 @@
     "ejs": "^2.5.2",
     "express": "^4.17.1",
     "express-validator": "^2.20.8",
+    "node-fetch": "^2.6.1",
     "request": "^2.88.2",
     "socket.io": "^1.4.8",
     "xmlhttprequest": "^1.8.0"
