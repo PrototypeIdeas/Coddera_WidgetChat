@@ -49,7 +49,7 @@ function widget() {
                 };
         
                 xhttp.onloadend = function() {
-                    const msg = "";
+                    var msg = "";
                     if (this.status == 200) {
                         var data = JSON.parse(this.response);
                         msg = "Segue o link do anexo: " + data.url
@@ -167,7 +167,7 @@ function widget() {
                                     $('.custom-card-footer').show();
                                     
                                     document.getElementById('send-msg-txt').oninput = function (){
-                                        console.log('Escrevendo...');
+
                                         var xhttp = new XMLHttpRequest();
                             
                                         var data = {
