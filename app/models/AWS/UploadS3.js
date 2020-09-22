@@ -38,8 +38,6 @@ module.exports = {
 				if (err) {
 					throw err;
 				}
-				console.log(`File uploaded successfully. ${data.Location}`);
-
 				callback({url: data.Location})
 
 				try {

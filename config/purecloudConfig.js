@@ -5,8 +5,8 @@ purecloudConfig.aws = {};
 //CREATE CHAT CONFIG
 purecloudConfig.widget.CREATE_URL = 'https://api.mypurecloud.com/api/v2/webchat/guest/conversations'
 
-purecloudConfig.widget.PURECLOUD_ORG_ID = 'f3dbd60b-80a2-47db-a761-9654fbefb9c7';
-purecloudConfig.widget.PURECLOUD_DEPLOYMENT_ID = 'c8a1b68d-855e-49c8-a052-1f6aa7516f1a';
+purecloudConfig.widget.PURECLOUD_ORG_ID = '947659c0-d25d-4f72-b07f-bf5181952f5b';
+purecloudConfig.widget.PURECLOUD_DEPLOYMENT_ID = '7539c714-2e65-402d-aff2-37f8362dd67e';
 purecloudConfig.widget.TARGET_ADRESS = 'Atlas';
 purecloudConfig.widget.LANGUAGE = 'pt-BR';
 

@@ -1,5 +1,5 @@
-// const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
-const host = "http://localhost:3001";
+const host = "http://ec2-18-228-171-32.sa-east-1.compute.amazonaws.com:3000";
+//const host = "http://localhost:3001";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
@@ -23,7 +23,8 @@ function widget() {
             member: {id: ''},
             data: {},
             typingControl: true,
-            heartbeatCount: 0
+            heartbeatCount: 0,
+            operatorConnected: true
         };
     
         $('#coddera-widget-card').slideToggle("fast");
@@ -35,11 +36,6 @@ function widget() {
  
             fReader.readAsDataURL(fileUpload.files[0]);
             fReader.onloadend = function(event){
-                var img = fileUpload;
-                img.src = event.target.result;
-
-                console.log('FILE: ' +  event.target.result);
-
                 var xhttp = new XMLHttpRequest();
                 
                 var data = {
@@ -186,7 +182,10 @@ function widget() {
                                         xhttp.send(JSON.stringify(data));
                                     }
 
-                                    $('.chat-dialog').append('<p>O operador acabou de se connectar.</p>')
+                                    if(chatObj.operatorConnected){
+                                        $('.chat-dialog').append('<p>O operador acabou de se connectar.</p>')
+                                        chatObj.operatorConnected = false
+                                    }
                                 } else if (eventData.eventBody.member.state == 'DISCONNECTED' && chatObj.member.id == eventData.eventBody.member.id){
                                     socket.close();
                                     $('.custom-card-footer').hide();
