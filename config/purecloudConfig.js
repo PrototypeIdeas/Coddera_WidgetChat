@@ -26,6 +26,6 @@ purecloudConfig.widget.FINALYZE_URL = 'https://api.mypurecloud.com/api/v2/webcha
 purecloudConfig.aws.ACCESS_KEY_ID = 'AKIAQW73BXXT7WEYX5FZ'
 purecloudConfig.aws.SECRET_ACCESS_KEY = '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'
 purecloudConfig.aws.AWS_REGION = 'sa-east-1'
-purecloudConfig.aws.S3_BUCKET = 'anexossebrae'
+purecloudConfig.aws.S3_BUCKET = 'anexoschat'
 
 module.exports = purecloudConfig;
