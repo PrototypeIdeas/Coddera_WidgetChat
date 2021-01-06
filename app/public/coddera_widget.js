@@ -1,13 +1,18 @@
-const host = "https://genesyscloudapps.coddera.com:3000";
-//const host = "http://localhost:3000";
+//const host = "https://genesyscloudapps.coddera.com:3000";
+const host = "http://localhost:3000";
 
 function widget() {
     $('#purecloud-widget').load(host + "/coddera-widget", function () {
         $("#initial_card_widget_logo").attr("src", host + "/images/sebrae_1.png");
-        $("#card_widget_logo").attr("src", host + "/images/sebrae_1.png");
+        $(".coddera-widget-logo").attr("src", host + "/images/sebrae_1.png");
         $(".send-msg-btn").css('background-image', 'url("' + host + '/images/send_btn.png' + '")');
         $(".attach-btn").css('background-image', 'url("' + host + '/images/paperclip.png' + '")');
         $("#form-body").css('background-image', 'url("' + host + '/images/sebrae_back.png' + '")');
+
+        var scripts = document.getElementsByTagName('script');
+        var lastScript = scripts[scripts.length-1];
+
+        //console.log(lastScript.getAttribute('clientName'))
 
         var submitButton = document.getElementById('submit-widget');
         var initialButton = document.getElementById('initial-widget-btn');
@@ -69,9 +74,9 @@ function widget() {
         }
 
         initialButton.onclick = function () {
-            $('.initial-card').slideToggle("fast");
+            $('#initial-coddera-card').slideToggle("fast");
             $('.card-footer').hide();
-            $('.custom-card-header').show();
+            $('.coddera-widget-logo').show();
             $('#form-body').show();
         }
 
@@ -99,7 +104,7 @@ function widget() {
         }
     
         openFormButton.onclick = function (){
-            $('#coddera-widget-card').slideToggle("fast");
+            $('#coddera-widget').slideToggle("fast");
             $('#open-form-widget-button').hide();
         }
     
@@ -119,7 +124,7 @@ function widget() {
         }
     
         submitButton.onclick = function () {
-            $('.card-body').slideToggle("fast");
+            $('#form-body').slideToggle("fast");
             $('.wait-card').show();
 
             var data = {

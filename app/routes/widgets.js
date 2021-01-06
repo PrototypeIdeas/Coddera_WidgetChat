@@ -12,7 +12,6 @@ module.exports = function (application) {
 
     application.post('/coddera-widget/chat/create', function (req, res) {
         var params = req.body;
-        console.log("Parametros: " + JSON.stringify(params));
 
         req.assert('name', 'Parametro {name} é obrigatório').notEmpty();
         req.assert('phone', 'Parametro {phone} é obrigatório').notEmpty();
@@ -26,14 +25,12 @@ module.exports = function (application) {
         }
 
         purecloudCreateModel.createChat(req, res, function(resp){
-            console.log('TESTE: ' + JSON.stringify(resp));
             res.json(resp);
         });
     });
 
     application.post('/coddera-widget/chat/send', function (req, res) {
         var params = req.body;
-        console.log("Parametros: " + JSON.stringify(params));
 
         req.assert('conversationId', 'Parametro {conversationId} é obrigatório').notEmpty();
         req.assert('memberId', 'Parametro {memberId} é obrigatório').notEmpty();
@@ -55,7 +52,6 @@ module.exports = function (application) {
 
     application.post('/coddera-widget/chat/send-typing', function (req, res) {
         var params = req.body;
-        console.log("Parametros: " + JSON.stringify(params));
 
         req.assert('conversationId', 'Parametro {conversationId} é obrigatório').notEmpty();
         req.assert('memberId', 'Parametro {memberId} é obrigatório').notEmpty();
@@ -75,7 +71,6 @@ module.exports = function (application) {
 
     application.delete('/coddera-widget/chat/finalyze', function (req, res) {
         var params = req.body;
-        console.log("Parametros: " + JSON.stringify(params));
 
         req.assert('conversationId', 'Parametro {conversationId} é obrigatório').notEmpty();
         req.assert('memberId', 'Parametro {memberId} é obrigatório').notEmpty();
