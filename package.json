@@ -24,7 +24,7 @@
     "consign": "^0.1.2",
     "cors": "^2.8.5",
     "ejs": "^2.5.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-validator": "^2.20.8",
     "https": "^1.0.0",
     "node-fetch": "^2.6.1",
